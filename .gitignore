@@ -17,3 +17,7 @@
 # ide files
 .idea
 bin/
+dist/
+*.zip
+*.db
+
