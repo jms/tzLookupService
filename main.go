@@ -10,6 +10,7 @@ import timezone "github.com/evanoberholster/timezoneLookup"
 
 var tz timezone.TimezoneInterface
 
+// Location point latitude and longitude
 type Location struct {
 	Lat float32 `form:"lat" binding:"required"`
 	Lon float32 `form:"lon" binding:"required"`
