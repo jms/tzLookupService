@@ -23,7 +23,7 @@ go get -u https://github.com/jms/tzLookupService
 cd ${GOPATH}/src/github.com/jms/tzLookupService
 make create-tz-db
 make run
-curl 'localhost:8080/tz?lat=12&lon=-86'
+curl 'localhost:8080?lat=12&lon=-86'
 {"timezone":"America/Managua"}
 
 # for production, change to release mode and set a different port 

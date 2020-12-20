@@ -8,20 +8,18 @@ import (
 )
 import timezone "github.com/evanoberholster/timezoneLookup"
 
-var tz timezone.TimezoneInterface
-
 // Location point latitude and longitude
 type Location struct {
-	Lat float32 `form:"lat" binding:"required"`
-	Lon float32 `form:"lon" binding:"required"`
+	Latitude  float32 `form:"lat" binding:"required,gte=-85,lte=85"`
+	Longitude float32 `form:"lon" binding:"required,gte=-180,lte=180"`
 }
 
 func main() {
-	r := gin.Default()
-	r.GET("/tz", func(c *gin.Context) {
+	router := gin.Default()
+	router.GET("/", func(c *gin.Context) {
 		var location Location
 		if err := c.ShouldBindWith(&location, binding.Query); err == nil {
-			res, err := lookupTz(location.Lat, location.Lon)
+			res, err := lookupTz(location.Latitude, location.Longitude)
 			if err != nil {
 				c.JSON(http.StatusNotFound, gin.H{"error": "timezone not found"})
 			}
@@ -30,7 +28,7 @@ func main() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
 	})
-	r.Run()
+	_ = router.Run()
 }
 
 func lookupTz(Lat float32, Lon float32) (string, error) {
@@ -45,7 +43,6 @@ func lookupTz(Lat float32, Lon float32) (string, error) {
 	}
 	res, err := tz.Query(timezone.Coord{Lat: Lat, Lon: Lon})
 	tz.Close()
-
 	if err != nil {
 		log.Println(err)
 	}
