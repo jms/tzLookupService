@@ -6,7 +6,7 @@ build:
 	GOOS=linux GOARCH=amd64 $(GO_CMD) build -o bin/tzLookupService-linux-amd64 main.go
 
 run:
-	$(GO_CMD) run main.go
+	$(GO_CMD) run github.com/jms/tzLookupService
 
 build-all:
 	GOOS=freebsd GOARCH=amd64 $(GO_CMD) build -o bin/tzLookupService-freebsd-amd64 main.go

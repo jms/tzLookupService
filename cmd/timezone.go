@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
-	timezone "github.com/evanoberholster/timezoneLookup"
 	"log"
+
+	timezone "github.com/evanoberholster/timezoneLookup"
 )
 
 var (

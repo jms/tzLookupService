@@ -1,12 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+
+	timezone "github.com/evanoberholster/timezoneLookup"
 )
-import timezone "github.com/evanoberholster/timezoneLookup"
 
 // Location point latitude and longitude
 type Location struct {
@@ -22,8 +24,10 @@ func main() {
 			res, err := lookupTz(location.Latitude, location.Longitude)
 			if err != nil {
 				c.JSON(http.StatusNotFound, gin.H{"error": "timezone not found"})
+			} else {
+				c.JSON(http.StatusOK, gin.H{"timezone": res})
 			}
-			c.JSON(http.StatusOK, gin.H{"timezone": res})
+
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
@@ -43,8 +47,5 @@ func lookupTz(Lat float32, Lon float32) (string, error) {
 	}
 	res, err := tz.Query(timezone.Coord{Lat: Lat, Lon: Lon})
 	tz.Close()
-	if err != nil {
-		log.Println(err)
-	}
 	return res, err
 }
