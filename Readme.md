@@ -19,7 +19,7 @@ process the geojson to create a BoltDB database with the timezones.
 
 the script to create the timezone db comes from timezoneLookup "cmd/timezone.go" 
  
-to test the project:
+to run the project:
 
 ```bash
 go get -u https://github.com/jms/tzLookupService
@@ -27,10 +27,22 @@ cd ${GOPATH}/src/github.com/jms/tzLookupService
 make create-tz-db
 make run
 curl 'localhost:8080?lat=12&lon=-86'
-{"timezone":"America/Managua"}
 
-# for change to release mode and set a different port 
+{"timezone":"America/Managua"}
+```
+
+Configuration
+```bash
+# changing to release mode and set a different port 
 export GIN_MODE=release
 export PORT=80
 ```
+
+To run the project on a container, you can use podman or docker
+```bash
+podman build -f Dockerfile -t tzlookup
+podman run --rm -p 8080:8080 tz_lookup
+```
+
+
 
