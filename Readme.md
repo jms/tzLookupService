@@ -1,7 +1,10 @@
 Timezone lookup service
 
-tzLookupService provide the timezone name using the latitude and longitude
-it uses the data from the project 
+tzLookupService is a hobby project to provide the timezone name 
+using the latitude and longitude is written in golang and expose 
+his functionality via web using GIN framework
+
+It uses the data from the project 
 
 https://github.com/evansiroky/timezone-boundary-builder
 
@@ -26,7 +29,7 @@ make run
 curl 'localhost:8080?lat=12&lon=-86'
 {"timezone":"America/Managua"}
 
-# for production, change to release mode and set a different port 
+# for change to release mode and set a different port 
 export GIN_MODE=release
 export PORT=80
 ```
