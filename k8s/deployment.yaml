@@ -1,0 +1,20 @@
+#  ./k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tzLookup-deployment
+  labels:
+    app: tzLookup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tzLookup
+  template:
+    metadata:
+      labels:
+        app: tzLookup
+    spec:
+      containers:
+        - name: tzlookup
+          image: localhost/tz_lookup

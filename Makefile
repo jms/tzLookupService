@@ -25,9 +25,9 @@ test:
 
 create-tz-db:
 	# data https://github.com/evansiroky/timezone-boundary-builder/releases
-	curl -LO -C - https://github.com/evansiroky/timezone-boundary-builder/releases/download/2020a/timezones.geojson.zip
+	curl -LO -C - https://github.com/evansiroky/timezone-boundary-builder/releases/download/2023b/timezones.geojson.zip
 	unzip timezones.geojson.zip
-	go run cmd/timezone.go -json "dist/combined.json" -db=timezone -type=boltdb
+	go run cmd/timezone.go -json "combined.json" -db=timezone -type=boltdb
 
 release: create-tz-db build-all
 	mkdir release

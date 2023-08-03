@@ -21,4 +21,4 @@ dist/
 release/
 *.zip
 *.db
-
+combined.json
