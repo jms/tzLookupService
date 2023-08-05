@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tzLookup-deployment
+  name: tz-lookup
   labels:
-    app: tzLookup
+    app: tz-lookup
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tzLookup
+      app: tz-lookup
   template:
     metadata:
       labels:
-        app: tzLookup
+        app: tz-lookup
     spec:
       containers:
-        - name: tzlookup
-          image: localhost/tz_lookup
+        - name: tz-lookup
+          image: 192.168.1.246:5000/tz_lookup:latest
