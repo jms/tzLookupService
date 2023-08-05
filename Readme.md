@@ -1,18 +1,18 @@
 Timezone lookup service
 
-tzLookupService is a hobby project to provide the timezone name 
-using the latitude and longitude is written in golang and expose 
+tzLookupService is a hobby project it provide the timezone name 
+using the latitude and longitude is written in go language and expose 
 his functionality via web using GIN framework
 
-It uses the data from the project 
+It also uses the data from the project 
 
 https://github.com/evansiroky/timezone-boundary-builder
 
-the service runs with Gin framework https://gin-gonic.com/
-
-and the lookup from the library 
+and the lookup of the data from the library
 
 https://github.com/evanoberholster/timezoneLookup
+
+The web service runs with Gin framework https://gin-gonic.com/
 
 for convenience a makefile target was created to download the data, unzip it and 
 process the geojson to create a BoltDB database with the timezones.
