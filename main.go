@@ -40,7 +40,7 @@ func lookupTz(Lat float32, Lon float32) (string, error) {
 		DatabaseType: "boltdb",   // memory or boltdb
 		DatabaseName: "timezone", // Name without suffix
 		Snappy:       true,
-		Encoding:     "msgpack", // json or msgpack
+		Encoding:     timezone.EncMsgPack, // json or msgpack
 	})
 	if err != nil {
 		log.Println(err)

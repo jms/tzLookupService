@@ -24,7 +24,8 @@ func main() {
 		if *storageType == "memory" {
 			tz = timezone.MemoryStorage(*snappy, *dbFilename)
 		} else if *storageType == "boltdb" {
-			tz = timezone.BoltdbStorage(*snappy, *dbFilename, *encoding)
+			var enc, _ = timezone.EncodingFromString(*encoding)
+			tz = timezone.BoltdbStorage(*snappy, *dbFilename, enc)
 		} else {
 			log.Println("\"-db\" No database type specified")
 			return
