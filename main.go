@@ -36,15 +36,22 @@ func main() {
 }
 
 func lookupTz(Lat float32, Lon float32) (string, error) {
+	encoding, err := timezone.EncodingFromString("msgpack")
+	if err != nil {
+		log.Println(err)
+	}
+
 	tz, err := timezone.LoadTimezones(timezone.Config{
 		DatabaseType: "boltdb",   // memory or boltdb
 		DatabaseName: "timezone", // Name without suffix
 		Snappy:       true,
-		Encoding:     timezone.EncMsgPack, // json or msgpack
+		Encoding:     encoding, // json or msgpack
 	})
+
 	if err != nil {
 		log.Println(err)
 	}
+
 	res, err := tz.Query(timezone.Coord{Lat: Lat, Lon: Lon})
 	tz.Close()
 	return res, err
