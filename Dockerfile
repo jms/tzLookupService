@@ -14,7 +14,7 @@ ENV GIN_MODE=release
 WORKDIR /app
 
 COPY --from=build-stage /app/tzLookupService ./
-COPY timezone.snap.db ./
+COPY timezone.msgpack.snap.db ./
 
 EXPOSE 8080
 
